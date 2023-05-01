@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+    发布帖子
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div class="page-header">
+            <h1>发帖</h1>
+            <hr>
+        </div>
+        <form method="post">
+            <div class="form-group">
+                {{ form.title.label }} <br> {{ form.title(class="form-control", placeholder="请输入主题") }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.content.label }} <br> {{ form.content(class="form-control", placeholder="请输入文章内容") }}
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</section>
+{% endblock %}

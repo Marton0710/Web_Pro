@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    body::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        color: white;
+        font-weight: bolder;
+    }
+    #everyday-img{
+        width: 400px;
+        height: 300px;
+    }
+</style>
+<section class="p-5 bg-info bg-gradient text-light text-sm-start">
+    <div class="container text-center" style="display: flex; justify-content: center;">
+        <div class="d-flex">
+            <div class="my-4">
+                <h1>你好，{% if um %}{{ um.username }}{% else %}陌生人{% endif %}</h1>
+                <h6>欢迎进入51班大家庭</h6>
+                <a href="{{ url_for('community') }}" class="btn btn-outline-success btn-lg">进入论坛 &raquo;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="p-5 bg-secondary bg-gradient text-light text-center text-sm-start">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="my-4">
+                    <h1>每日一梗<span class="text-warning" style="font-size: 20px;">我们有许多的梗</span></h1>
+                    <div>
+                        <hr>
+                        <h5>小小年纪你谈政治，你思想反动</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, voluptatum.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="my-4">
+                    <h1>每日经典<span class="text-warning" style="font-size: 20px;">分享一些有趣的图片</span></h1>
+                    <div>
+                        <hr>
+                        <img id="everyday-img" src="#">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var path = "{{ photo_address }}";
+    var img = document.getElementById("everyday-img");
+    img.setAttribute("src", path)
+</script>
+{% endblock %}

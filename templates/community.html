@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+    社区
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    #container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+<section id="container" class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <h1 class="display-4">社区</h1>
+        <p class="lead">这里是社区，你可以在这里交流。</p>
+        <hr class="my-4">
+        {% if um.flag_edit == 1 %}
+            <p>快来发个贴吧。</p>
+            <a class="btn btn-primary" href="{{ url_for('postEdit') }}" role="button">我要发贴</a>
+            <hr>
+        {% else %}
+            <p>你暂无发帖的权利，请联系管理员！！</p>
+        {% endif %}
+    </div>
+    <div class="container text-black">
+        {% for post in posts %}
+        <div class="card bg-light">
+            <h4 class="card-header">{{ post.title }}</h4>
+            <div class="card-body">
+              <p class="card-title"><a id="a-link" href="{{ url_for('user_detail', user_id=post.author.id) }}">{{ post.author.username }}</a>&nbsp;&nbsp;&nbsp;{{ post.create_time }}</p>
+              <h5 class="card-text">{{ post.content }}</h5>
+              <a href="{{ url_for('comment', post_id=post.id) }}" class="btn btn-outline-primary">查看详情</a>
+              {% if um.id == post.author.id %}
+                <a href="{{ url_for('delete_post', post_id=post.id) }}" class="btn btn-outline-danger">删除</a>
+              {% endif %}
+            </div>
+          </div>
+        <br>
+        {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

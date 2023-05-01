@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    登录
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div class="page-header">
+            <h1>登录<small style="font-size: 20px;">请填写登录信息！</small></h1>
+            <hr>
+        </div>
+        <form method="post">
+            <div class="form-group">
+                {{ form.username.label }} <br> {{ form.username(class="form-control", placeholder="请输入用户名") }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.password.label }} <br> {{ form.password(class="form-control", placeholder="请输入密码") }}
+            </div>
+            <br>
+            <p>没有账户？立即<a id="a-link" href="{{ url_for('register') }}">注册</a></p>
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+    关于
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    .font{
+        color: black;
+    }
+    #image{
+        width: 200px;
+        height: 500px;
+    }
+</style>
+<section class="p-5">
+    <div class="container">
+        <h1 style="display: flex; justify-content: center;">抱歉，此界面<span class="text-danger">尚未完善！！</span></h1>
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../static/avatar/dahai.jpg" class="d-block w-100" id="image">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="font">鲁大海</h5>
+                  <p class="font">钢哥</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="../static/avatar/linianyang.jpg" class="d-block w-100" id="image">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="font">化学老师</h5>
+                  <p class="font">我教给你的，就是最好的</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="../static/avatar/xiaohui.png" class="d-block w-100" id="image">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5 class="font">滕州一中校徽</h5>
+                  <p class="font">滕州最好的监狱</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">前进</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">后退</span>
+            </button>
+          </div>
+    </div>
+</section>>
+{% endblock %}

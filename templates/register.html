@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+    注册
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div class="page-header">
+            <h1>注册<small style="font-size: 20px;">请填写注册信息！</small></h1>
+            <hr>
+        </div>
+        <form method="post">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.username.label }} <br> {{ form.username(class="form-control", placeholder="请输入用户名") }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.sex.label }} <br> {{ form.sex(class="form-control") }}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.password.label }} <br> {{ form.password(class="form-control", placeholder="请输入密码") }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.checkPassword.label }} <br> {{ form.checkPassword(class="form-control", placeholder="请确认密码") }}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <p>已有账户？立即<a id="a-link" href="{{ url_for('login') }}">登录</a></p>
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</section>
+{% endblock %}

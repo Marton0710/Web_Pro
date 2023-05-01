@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+    详情
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div style="display: flex; justify-content: center;">
+            <h3><strong>{{ post.title }}</strong></h3>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <p>{{ post.author.username }}&nbsp;&nbsp;&nbsp;{{ post.create_time }}</p>
+        </div>
+        <h5>{{ post.content }}</h4>
+        <hr>
+        {% for comment in post.comments %}
+            <div class="card text-black">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comment.author.username }}&nbsp;&nbsp;&nbsp;{{ comment.create_time }}{% if um.id == comment.author_id %}&nbsp;&nbsp;&nbsp;<a id="a-link"" href="{{ url_for('delete_comment', comment_id=comment.id) }}">删除</a>{% endif %}</h5>
+                    <p class="card-text">{{ comment.content }}</p>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+        <hr>
+        <form method="post">
+            <div class="form-group">
+                {{ form.comment.label }} <br> {{ form.comment(class="form-control", placeholder="说点什么吧...") }}
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('community') }}" class="btn btn-outline-primary">返回</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+    个人资料
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div>
+            <h3>你好，这是你的资料</h3>
+            <hr>
+        </div>
+
+        <div>
+            {% if user.avatar %}
+                <img src="../static/avatar/{{ user.avatar }}" style="width: 150px; height: 150px;">
+            {% else %}
+                <img src="../static/avatar/moren.jpg" style="width: 150px; height: 150px;">
+            {% endif %}
+
+            {% if user.id == um.id %}
+                <br><br>
+                <a class="btn btn-outline-dark" href="{{ url_for('edit_avatar', user_id=user.id) }}" role="button">编辑头像</a>
+            {% endif %}
+            <hr>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-username-list" data-bs-toggle="list" href="#list-username" role="tab" aria-controls="list-home">用户名</a>
+                <a class="list-group-item list-group-item-action" id="list-sex-list" data-bs-toggle="list" href="#list-sex" role="tab" aria-controls="list-profile">性别</a>
+                <a class="list-group-item list-group-item-action" id="list-email-list" data-bs-toggle="list" href="#list-email" role="tab" aria-controls="list-messages">邮箱</a>
+                <a class="list-group-item list-group-item-action" id="list-address-list" data-bs-toggle="list" href="#list-address" role="tab" aria-controls="list-settings">地址</a>
+                <a class="list-group-item list-group-item-action" id="list-info-list" data-bs-toggle="list" href="#list-info" role="tab" aria-controls="list-settings">个人简介</a>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-username" role="tabpanel" aria-labelledby="list-username-list">{{ user.username }}</div>
+                <div class="tab-pane fade" id="list-sex" role="tabpanel" aria-labelledby="list-sex-list">{{ user.sex }}</div>
+                <div class="tab-pane fade" id="list-email" role="tabpanel" aria-labelledby="list-email-list">{{ user.email }}</div>
+                <div class="tab-pane fade" id="list-address" role="tabpanel" aria-labelledby="list-address-list">{{ user.address }}</div>
+                <div class="tab-pane fade" id="list-info" role="tabpanel" aria-labelledby="list-info-list">{{ user.info }}</div>
+              </div>
+            </div>
+          </div>
+
+        <div>
+            {% if user.id == um.id %} 
+                <hr>
+                <a class="btn btn-outline-info" href="{{ url_for('edit_detail', user_id=user.id) }}" role="button">编辑个人资料</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

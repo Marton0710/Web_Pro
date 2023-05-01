@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    上传文件
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient bg-opacity-50 text-dark">
+    <div class="container">
+        <div class="page-header">
+            <h1>上传<small style="font-size: 20px;">请上传所需图片！</small></h1>
+            <small class="text-danger">注意&#58;仅支持jpg、jpeg、png、gif格式，图片将用于“每日经典”栏目</small>
+            <hr>
+        </div>
+        <form method="post" enctype="multipart/form-data">  <!--以二进制上传-->
+            <div class="form-group">
+                {{ form.photoFile.label }} <br> {{ form.photoFile() }}
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-success") }}
+            <a href="{{ url_for('admit') }}" class="btn btn-outline-secondary" type="button">返回</a>
+        </form>
+        
+    </div>
+</section>
+{% endblock %}

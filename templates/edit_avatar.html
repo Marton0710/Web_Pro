@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+    上传头像
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div>
+            <h3>你好，请上传个人头像</h3>
+            <small class="text-danger">注意&#58;仅支持jpg、jpeg、png、gif格式</small>
+            <hr>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">  <!--以二进制上传-->
+            <div class="form-group">
+                {{ form.avatarFile.label }} <br> {{ form.avatarFile() }}
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}
+    后台管理
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+    #a-link{
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient bg-opacity-50 text-dark">
+    <div class="container">
+        <div class="text-center">
+            <h1>后台管理</h1>
+        </div>
+
+        <div>
+            <h3>用户</h3>
+            <hr>
+        </div>
+        <div class="row">
+            {% for user in users %}
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        {% if user.avatar %}
+                            <img src="../static/avatar/{{ user.avatar }}" style="width:150px; height:150px">
+                        {% else %}
+                            <img src="../static/avatar/moren.jpg" style="width:150px; height:150px">
+                        {% endif %}
+                        <div class="caption">
+                            <br>
+                            <h3>{{ user.username }}</h3>
+                            <p>{{ user.info }}</p>
+                            <p>
+                                {% if user.flag_edit == 0 %}
+                                    <a href="{{ url_for('flag_edit', wheater=0, user_id=user.id) }}" class="btn btn-outline-success" role="button">允许编辑</a>
+                                {% else %}
+                                    <a href="{{ url_for('flag_edit', wheater=1, user_id=user.id) }}" class="btn btn-outline-success" role="button"">禁止编辑</a>
+                                {% endif %}
+
+                                {% if user.flag_kill == 0 and user.flag_admit == 0 %}
+                                    <a href="{{ url_for('flag_kill', wheater=0, user_id=user.id) }}" class="btn btn-outline-danger" role="button">封禁用户</a>
+                                {% elif user.flag_admit == 0 %}
+                                    <a href="{{ url_for('flag_kill', wheater=1, user_id=user.id) }}" class="btn btn-outline-danger" role="button">解禁用户</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+
+        <div>
+            <h3>图片</h3>
+            <hr>
+        </div>
+        <a href="{{ url_for('uploads_photo') }}" class="btn btn-primary" type="button">添加图片</a>
+        <br><br>
+        <table class="table table-info table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">图片</th>
+                    <th scope="col">时间</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for photo in photos %}
+                <tr>
+                    <th scope="col">{{ photo.id }}</th>
+                    <th>{{ photo.address }}</th>
+                    <th>{{ photo.create_time }}</th>
+                    <th><a href="{{ url_for('delete_photo', photo_id=photo.id) }}" id="a-link">删除</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+    编辑个人资料
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    .container::before{
+        display: block;
+        content: '';
+        height: 50px;
+    }
+</style>
+<section class="p-5 bg-secondary bg-gradient text-light">
+    <div class="container">
+        <div>
+            <h3>你好，请您修改您的资料</h3>
+            <hr>
+        </div>
+
+        <form method="post">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.sex.label }} <br> {{ form.sex(class="form-control") }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.email.label }} <br> {{ form.email(class="form-control", placeholder="请输入邮箱") }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        {{ form.address.label }} <br> {{ form.address(class="form-control", placeholder="请输入地址") }}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.info.label }} <br> {{ form.info(class="form-control", placeholder="介绍一下自己吧...") }}
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</section>
+{% endblock %}
